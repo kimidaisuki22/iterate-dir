@@ -11,8 +11,9 @@ int main(int argc, char **argv) {
     if (std::filesystem::is_directory(p) && p.filename() == ".git") {
       nlohmann::json repo;
       repo["path"] = p.parent_path().string();
-      repo["changed_before_seconds"] = get_dir_changed_time(p.parent_path()).count();
-
+      repo["changed_before_seconds"] =
+          get_dir_changed_time(p.parent_path()).count();
+      repo["name"] = p.parent_path().filename().string();
 
       json["repos"].push_back(repo);
       // std::cout << "path: " << p.parent_path() << "\n";
