@@ -1,6 +1,5 @@
 #pragma once
 
-#include <__chrono/duration.h>
 #include <cassert>
 #include <chrono>
 #include <filesystem>
