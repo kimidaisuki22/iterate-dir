@@ -2,10 +2,12 @@
 #include <_types/_uint64_t.h>
 #include <cstddef>
 #include <filesystem>
+#include <git2/global.h>
 #include <iostream>
 #include <nlohmann/json.hpp>
 #include <nlohmann/json_fwd.hpp>
 #include <vector>
+#include <git2.h>
 inline std::vector<std::filesystem::path> get_cache_dirs() {
   return {
       ".cache",
@@ -40,6 +42,8 @@ int main(int argc, char **argv) {
     json_str.push_back(ch);
   }
   nlohmann::json json = nlohmann::json::parse(json_str);
+
+  git_libgit2_init();
   for (auto repo : json["repos"]) {
     std::string p = repo["path"];
     auto repo_size = get_dir_size(p);
@@ -51,6 +55,7 @@ int main(int argc, char **argv) {
     repo["code_size"] = code_size;
     std::cout << repo << "\n";
   }
+  git_libgit2_shutdown();
 
   return 0;
 }
