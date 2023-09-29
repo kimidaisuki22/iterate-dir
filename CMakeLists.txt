@@ -7,9 +7,10 @@ set(CMAKE_CXX_STANDARD 20)
 add_executable(find-repo  find-repo.cpp)
 add_executable(remove-cache  cache_remover.cpp)
 
-set(LIBS nlohmann_json::nlohmann_json fmt::fmt)
+set(LIBS nlohmann_json::nlohmann_json fmt::fmt unofficial::git2::libgit2package)
 find_package(nlohmann_json CONFIG REQUIRED)
 find_package(fmt CONFIG REQUIRED)
+find_package(unofficial-git2 CONFIG REQUIRED)
 target_link_libraries(find-repo PRIVATE ${LIBS})
 target_link_libraries(remove-cache PRIVATE ${LIBS})
 
