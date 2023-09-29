@@ -10,9 +10,9 @@ get_dir_changed_time(std::filesystem::path dir_path) {
   assert(std::filesystem::is_directory(dir_path));
 
   auto time = std::filesystem::last_write_time(dir_path);
-  dir_iter::simple_iterate(dir_path, [&time](std::filesystem::path p){
+  dir_iter::simple_iterate(dir_path, [&time](std::filesystem::path p) {
     auto t = std::filesystem::last_write_time(p);
-    time = std::max(t,time);
+    time = std::max(t, time);
   });
   using Clock = decltype(time)::clock;
   auto now = Clock::now();
