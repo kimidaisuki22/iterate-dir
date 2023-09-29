@@ -5,12 +5,14 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(find-repo  find-repo.cpp)
+add_executable(remove-cache  cache_remover.cpp)
 
+set(LIBS nlohmann_json::nlohmann_json fmt::fmt)
 find_package(nlohmann_json CONFIG REQUIRED)
-target_link_libraries(find-repo PRIVATE nlohmann_json::nlohmann_json)
-
 find_package(fmt CONFIG REQUIRED)
-target_link_libraries(find-repo PRIVATE fmt::fmt)
+target_link_libraries(find-repo PRIVATE ${LIBS})
+target_link_libraries(remove-cache PRIVATE ${LIBS})
+
 
 enable_testing()
 add_subdirectory(test)
