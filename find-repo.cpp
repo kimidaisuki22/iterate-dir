@@ -1,3 +1,4 @@
+#include "dir_time.h"
 #include "include/dir-iter/dir-iter.h"
 #include <filesystem>
 #include <iostream>
@@ -8,7 +9,12 @@ int main(int argc, char **argv) {
   nlohmann::json json;
   dir_iter::simple_iterate(root, [&json](const std::filesystem::path &p) {
     if (std::filesystem::is_directory(p) && p.filename() == ".git") {
-      json["repo"].push_back(p.parent_path().string());
+      nlohmann::json repo;
+      repo["path"] = p.parent_path().string();
+      repo["changed_before_seconds"] = get_dir_changed_time(p.parent_path()).count();
+
+
+      json["repos"].push_back(repo);
       // std::cout << "path: " << p.parent_path() << "\n";
     }
   });
