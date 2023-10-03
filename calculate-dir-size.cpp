@@ -21,7 +21,7 @@ int main(int argc, char **argv) {
   }
   freopen("/dev/tty", "rb", stdin);
   std::cin.clear();
-  std::cout << "remove all dirs above? (y for yes)\n";
+  std::cout << "Remove dirs (y [Enter] for yes)\n";
   // std::ifstream  tty{"/dev/tty",std::ios::binary};
   char token{};
   std::cin >> token;
