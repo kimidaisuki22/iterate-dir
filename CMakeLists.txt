@@ -14,6 +14,11 @@ find_package(unofficial-git2 CONFIG REQUIRED)
 target_link_libraries(find-repo PRIVATE ${LIBS})
 target_link_libraries(remove-cache PRIVATE ${LIBS})
 
+add_executable(find-cache-dirs "find-cache-dirs.cpp")
+target_link_libraries(find-cache-dirs PRIVATE ${LIBS})
+
+add_executable(calculate-dir-size "calculate-dir-size.cpp")
+target_link_libraries(calculate-dir-size PRIVATE ${LIBS})
 
 enable_testing()
 add_subdirectory(test)
