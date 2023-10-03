@@ -6,12 +6,7 @@
 #include <nlohmann/json.hpp>
 #include <nlohmann/json_fwd.hpp>
 #include <vector>
-inline std::vector<std::filesystem::path> get_cache_dirs() {
-  return {
-      ".cache",
-      "build",
-  };
-}
+#include "cache_dirs.h"
 inline uint64_t
 get_cache_dirs_size(std::filesystem::path root,
                     std::vector<std::filesystem::path> cache_dirs) {
