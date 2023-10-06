@@ -16,8 +16,7 @@ int main(int argc, char **argv) {
   while (std::getline(std::cin, line)) {
     std::filesystem::path path = line;
     dirs.push_back(line);
-    std::cout << mask_parent_dirs_name(path.string()) << ": "
-              << get_dir_size(path) << "\n";
+    std::cout << (path.string()) << ": " << get_dir_size(path) << "\n";
   }
   freopen("/dev/tty", "rb", stdin);
   std::cin.clear();
@@ -26,5 +25,11 @@ int main(int argc, char **argv) {
   char token{};
   std::cin >> token;
   std::cout << ":" << token << ":\n";
+  if (token == 'y') {
+    for (auto d : dirs) {
+      std::cout << "removing: " << d << "\n";
+      std::filesystem::remove_all(d);
+    }
+  }
   return 0;
 }
